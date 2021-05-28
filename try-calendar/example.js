@@ -19,54 +19,20 @@ angular
         alert.show('Deleted', args.calendarEvent);
       }
     }];
-    vm.events = [
-      // {
-      //   title: 'An event',
-      //   color: calendarConfig.colorTypes.warning,
-      //   startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-      //   endsAt: moment().startOf('week').add(1, 'week').add(2, 'hours').toDate(),
-      //   draggable: true,
-      //   resizable: true,
-      //   actions: actions
-      // }, {
-      //   title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
-      //   color: calendarConfig.colorTypes.info,
-      //   startsAt: moment().subtract(1, 'day').toDate(),
-      //   endsAt: moment().add(5, 'days').toDate(),
-      //   draggable: true,
-      //   resizable: true,
-      //   actions: actions
-      // }, {
-      //   title: 'This is a really long event title that occurs on every year',
-      //   color: calendarConfig.colorTypes.important,
-      //   startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-      //   endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-      //   recursOn: 'year',
-      //   draggable: true,
-      //   resizable: true,
-      //   actions: actions
-      // }
-    ];
+    vm.events = [];
 
-    // let temp = 'ab';
-    // fetch('https://calendarific.com/api/v2/holidays?&api_key=96f8f6e15400fc7e2ac19f502c3a3726c6169dcb&country=US&year=2019')
-    // .then(response => response.json())
-    // .then(data => 
-    //   {temp = data; console.log(temp);}
-    // )
-    // .catch(error => {
-    //   console.error('There has been a problem with your fetch operation:', error);
-    // });
+    var countries = ['US', 'VN', 'TW']
     // adding fetch calendar
-    async function fetchCalendar() {
-      const response = await fetch('https://calendarific.com/api/v2/holidays?&api_key=96f8f6e15400fc7e2ac19f502c3a3726c6169dcb&country=US&year=2019');
+    async function fetchCalendar(country) {
+      const response = await fetch('https://calendarific.com/api/v2/holidays?&api_key=96f8f6e15400fc7e2ac19f502c3a3726c6169dcb&country='+country+'&year=2019');
       const text = await response.json();
       return text;
     }
 
     let temp;
-    fetchCalendar().then(text => temp = text.response).then(function() {console.log(temp.holidays.length)})
-    .then(function() {
+    for (var c in countries) {
+      fetchCalendar(countries[c]).then(text => temp = text.response).then(function() {console.log(temp.holidays.length)})
+      .then(function() {
       for (var i = 0; i<temp.holidays.length; i++){
         vm.events.push(
         {
@@ -80,18 +46,20 @@ angular
           actions: actions
         }
         )}
-      });
+      });}
+    
     
     vm.cellIsOpen = true;
-
+      
     vm.addEvent = function() {
       vm.events.push({
         title: 'New event',
-        startsAt: moment().startOf('day').toDate(),
-        endsAt: moment().endOf('day').toDate(),
+        startsAt: moment(vm.viewDate).startOf('day').toDate(),
+        endsAt: moment(vm.viewDate).endOf('day').toDate(),
         color: calendarConfig.colorTypes.important,
         draggable: true,
-        resizable: true
+        resizable: true,
+        actions: actions
       });
     };
 
