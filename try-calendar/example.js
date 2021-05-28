@@ -36,7 +36,7 @@ angular
       for (var i = 0; i<temp.holidays.length; i++){
         vm.events.push(
         {
-          title: 'This is every year',
+          title: temp.holidays[i].name,
           color: calendarConfig.colorTypes.important,
           startsAt: moment(temp.holidays[i].date.iso).startOf('day').toDate(),
           endsAt: moment(temp.holidays[i].date.iso).endOf('day').toDate(),
@@ -52,7 +52,7 @@ angular
     vm.cellIsOpen = true;
       
     vm.addEvent = function() {
-      vm.events.push({
+      vm.events.unshift({
         title: 'New event',
         startsAt: moment(vm.viewDate).startOf('day').toDate(),
         endsAt: moment(vm.viewDate).endOf('day').toDate(),
