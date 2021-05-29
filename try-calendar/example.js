@@ -30,14 +30,18 @@ angular
     }
 
     let temp;
+    let colors = [calendarConfig.colorTypes.info, calendarConfig.colorTypes.warning, 
+      calendarConfig.colorTypes.inverse, calendarConfig.colorTypes.special,
+      calendarConfig.colorTypes.success, calendarConfig.colorTypes.important]
     for (var c in countries) {
+      let tempc = colors[c];
       fetchCalendar(countries[c]).then(text => temp = text.response).then(function() {console.log(temp.holidays.length)})
       .then(function() {
       for (var i = 0; i<temp.holidays.length; i++){
         vm.events.push(
         {
           title: temp.holidays[i].name + ' - '+ temp.holidays[i].country.name,
-          color: calendarConfig.colorTypes.important,
+          color: tempc,
           startsAt: moment(temp.holidays[i].date.iso).startOf('day').toDate(),
           endsAt: moment(temp.holidays[i].date.iso).endOf('day').toDate(),
           recursOn: 'year',
