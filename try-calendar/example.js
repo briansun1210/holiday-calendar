@@ -36,7 +36,7 @@ angular
       for (var i = 0; i<temp.holidays.length; i++){
         vm.events.push(
         {
-          title: temp.holidays[i].name,
+          title: temp.holidays[i].name + ' - '+ temp.holidays[i].country.name,
           color: calendarConfig.colorTypes.important,
           startsAt: moment(temp.holidays[i].date.iso).startOf('day').toDate(),
           endsAt: moment(temp.holidays[i].date.iso).endOf('day').toDate(),
