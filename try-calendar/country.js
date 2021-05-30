@@ -22,17 +22,24 @@ fetchCountry().then(text => temp = text.response).then(function() {console.log(t
 }
 ).then(function() {
     var myDiv = document.getElementById("cboxes");
-console.log(myDiv)
+    // console.log(myDiv)
 
-for (var i = 0; i < res.length; i++) {
-    var checkBox = document.createElement("input");
-    var label = document.createElement("label");
-    checkBox.type = "checkbox";
-    checkBox.value = res[i];
-    myDiv.appendChild(checkBox);
-    myDiv.appendChild(label);
-    label.appendChild(document.createTextNode(res[i]));
-}});
+    for (var i = 0; i < res.length; i++) {
+        var checkBox = document.createElement("input");
+        var label = document.createElement("label");
+        checkBox.type = "checkbox";
+        checkBox.value = res[i];
+        // checkbox.checked = "false";
+        myDiv.appendChild(checkBox);
+        myDiv.appendChild(label);
+        label.appendChild(document.createTextNode(res[i]));
+    }
+    var button = document.createElement('input');
+    button.setAttribute('type', 'submit');
+    button.setAttribute('value', 'Submit');
+    myDiv.appendChild(button);
+}
+);
 
 let resn = function () {return res;}
 console.log(res)
