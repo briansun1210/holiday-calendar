@@ -34,6 +34,7 @@ fetchCountry().then(text => temp = text.response).then(function() {console.log(t
         myDiv.appendChild(label);
         label.appendChild(document.createTextNode(res[i]));
     }
+    myDiv.appendChild(document.createElement("br"));
     var button = document.createElement('input');
     button.setAttribute('type', 'submit');
     button.setAttribute('value', 'Submit');

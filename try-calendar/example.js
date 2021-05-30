@@ -21,7 +21,7 @@ angular
     }];
     vm.events = [];
 
-    var countries = ['US', 'VN', 'TW']
+    var countries = ['VN', 'TW']
     // adding fetch calendar
     async function fetchCalendar(country) {
       const response = await fetch('https://calendarific.com/api/v2/holidays?&api_key=c694e798937f5e5a37d37b63b5d02eabd17d7c32&country='+country+'&year=2019');
