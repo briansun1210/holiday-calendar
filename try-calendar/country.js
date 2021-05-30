@@ -1,7 +1,7 @@
 // const fetch = require("node-fetch");
 
 async function fetchCountry() {
-    const response = await fetch('https://calendarific.com/api/v2/countries?api_key=96f8f6e15400fc7e2ac19f502c3a3726c6169dcb');
+    const response = await fetch('https://calendarific.com/api/v2/countries?api_key=c694e798937f5e5a37d37b63b5d02eabd17d7c32');
     const text = await response.json();
     // const text2 = await text.reponse;
     return text;
