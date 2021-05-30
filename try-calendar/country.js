@@ -20,9 +20,24 @@ fetchCountry().then(text => temp = text.response).then(function() {console.log(t
         }
     // }
 }
-);
+).then(function() {
+    var myDiv = document.getElementById("cboxes");
+console.log(myDiv)
+
+for (var i = 0; i < res.length; i++) {
+    var checkBox = document.createElement("input");
+    var label = document.createElement("label");
+    checkBox.type = "checkbox";
+    checkBox.value = res[i];
+    myDiv.appendChild(checkBox);
+    myDiv.appendChild(label);
+    label.appendChild(document.createTextNode(res[i]));
+}});
+
 let resn = function () {return res;}
-// console.log(res)
+console.log(res)
+
+
 
 
 // async function country(){
